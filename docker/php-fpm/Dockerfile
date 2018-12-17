@@ -1,7 +1,5 @@
 FROM alpine:3.8
 
-LABEL maintainer="Vincent Composieux <vincent.composieux@gmail.com>"
-
 RUN apk add --update \
     php7-fpm \
     php7-apcu \
@@ -43,5 +41,5 @@ ADD symfony.pool.conf /etc/php7/php-fpm.d/
 
 CMD ["php-fpm7", "-F"]
 
-WORKDIR /var/www/symfony
+WORKDIR /var/www/back
 EXPOSE 9001

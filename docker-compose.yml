@@ -11,29 +11,37 @@ services:
             MYSQL_USER: symfony
             MYSQL_PASSWORD: symfony
     php:
-        build: ./php-fpm
+        build: ./docker/php-fpm
         ports:
             - "9000:9001"
         environment:
             APP_ENV: prod
-            DATABASE_URL : "mysql://root:root@db:3306/symfony"
         volumes:
-            - ./symfony:/var/www/symfony:cached
-            - ./logs/symfony:/var/www/symfony/var/log:cached
+            - ./back:/var/www/back
+            - ./logs/back:/var/www/back/var/log:cached
         links:
             - db
         extra_hosts:
             - "docker.host:127.0.0.1"
     nginx:
-        build: ./nginx
+        build: ./docker/nginx
         ports:
             - "80:80"
+            - "8080:8080"
         environment:
             APP_ENV: prod
         links:
             - php
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
-            - ./symfony:/var/www/symfony:cached
+            - ./back:/var/www/back
+            - ./front/dist:/var/www/front
+    node:
+        build: ./docker/node
+        ports:
+            - "4200:4200"
+        volumes:
+            - ./front:/var/www/front:cached
+            - /var/www/front/node_modules/
 
 

@@ -2,3 +2,4 @@
 /back/vendor
 /back/var/cache/*
 /back/var/log/*
+/front/node_modules/*
