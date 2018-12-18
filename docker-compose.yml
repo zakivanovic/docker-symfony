@@ -34,14 +34,14 @@ services:
             - php
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
-            - ./back:/var/www/back
-            - ./front/dist:/var/www/front
+            - ./back:/var/www/back:cached
+            - ./front/dist:/var/www/front:cached
     node:
         build: ./docker/node
         ports:
             - "4200:4200"
         volumes:
-            - ./front:/var/www/front:cached
+            - ./front:/var/www/front
             - /var/www/front/node_modules/
 
 
