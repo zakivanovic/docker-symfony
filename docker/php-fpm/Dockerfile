@@ -39,7 +39,13 @@ ADD xdebug.ini  /etc/php7/conf.d/
 
 ADD symfony.pool.conf /etc/php7/php-fpm.d/
 
+ADD entrypoint.sh /var/www/entrypoint.sh
+RUN chmod +x /var/www/entrypoint.sh
+
+WORKDIR /var/www/back/
+
+ENTRYPOINT ["/var/www/entrypoint.sh"]
+
 CMD ["php-fpm7", "-F"]
 
-WORKDIR /var/www/back
 EXPOSE 9001

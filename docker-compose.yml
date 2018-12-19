@@ -23,6 +23,8 @@ services:
             - db
         extra_hosts:
             - "docker.host:127.0.0.1"
+        depends_on:
+            - db
     nginx:
         build: ./docker/nginx
         ports:
@@ -34,8 +36,8 @@ services:
             - php
         volumes:
             - ./logs/nginx:/var/log/nginx:cached
-            - ./back:/var/www/back:cached
-            - ./front/dist:/var/www/front:cached
+            - ./back:/var/www/back
+            - ./front:/var/www/front
     node:
         build: ./docker/node
         ports:
