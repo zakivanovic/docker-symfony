@@ -6,16 +6,11 @@ Build and Run:
 ```bash
 $ docker-compose up -d
 ```
-Enter `php` container and install symfony vendors:
-
-```bash
-$ php composer.phar install
-```
 
 If you want to rebuild angular app, enter `node` container and execute:
 
 ```bash
-$ npm build
+$ npm run build
 ```
 
 URL to Front : `http://localhost` (or `http://localhost:4200` for dev)
