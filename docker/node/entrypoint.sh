@@ -1,6 +1,8 @@
 #!/bin/sh
 
 # Install angular dependancies
-npm i 
+npm i
+
+npm run build --prod
 
 exec "$@"

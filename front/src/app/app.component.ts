@@ -11,8 +11,8 @@ import { ApiService } from './services/api.service';
 
 export class AppComponent implements OnInit {
   displayedColumns: string[] = ['id', 'annonceId', 'siren', 'commentaires', 'mandataire', 'nic'];
-  dataSource = new MatTableDataSource<Item>([]);
   items = [];
+  dataSource = new MatTableDataSource<Item>(this.items);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -22,9 +22,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.getItems().subscribe( (items : Item[]) => {
-      this.items = items;
-      this.dataSource = new MatTableDataSource<Item>(items);
-      console.log(this.dataSource);
+      this.dataSource.data = items;
+      this.dataSource.paginator = this.paginator;
     });
     
   }
